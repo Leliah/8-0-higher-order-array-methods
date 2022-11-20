@@ -13,7 +13,9 @@ const exampleSongData = require("../data/songs");
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {Object[]}
  */
-function sortByRuntimeAscending(songs) {}
+const sortByRuntimeAscending = (songs) => {
+  return songs.sort((a,b) => a.runtimeInSeconds - b.runtimeInSeconds)
+}
 
 /**
  * Reorders the array so that the song objects are organized by their artist name. The artist that comes last in the alphabet should come first.
@@ -23,7 +25,18 @@ function sortByRuntimeAscending(songs) {}
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {Object[]}
  */
-function sortByArtistNameDescending(songs) {}
+const sortByArtistNameDescending = (songs) => {
+  return songs.sort((a,b) => {
+    if (a.artist.toUpperCase() > b.artist.toUpperCase()) {
+      return -1;
+    }
+    if (b.artist.toUpperCase() > a.artist.toUpperCase()) {
+      return 1;
+    }
+    // a must be equal to b
+    return 0;
+  })
+}
 
 /**
  * Reorders the array so that the song objects are organized by their song title. The title that comes first in the alphabet should come first.
@@ -33,7 +46,18 @@ function sortByArtistNameDescending(songs) {}
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {Object[]}
  */
-function sortBySongTitleAscending(songs) {}
+const sortBySongTitleAscending = (songs) => {
+  return songs.sort((a,b) => {
+    if (a.title.toUpperCase() < b.title.toUpperCase()) {
+      return -1;
+    }
+    if (b.title.toUpperCase() < a.title.toUpperCase()) {
+      return 1;
+    }
+    // a must be equal to b
+    return 0;
+  })
+}
 
 module.exports = {
   sortByRuntimeAscending,
